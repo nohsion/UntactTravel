@@ -1,7 +1,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>랜덤 언택트 여행 중</title>
+	<title>주요명소 언택트 여행 중</title>
 </head>
 
 <body>
@@ -49,28 +49,17 @@
     var roadview = new kakao.maps.Roadview(roadviewContainer); //로드뷰 객체
     var roadviewClient = new kakao.maps.RoadviewClient(); //좌표로부터 로드뷰 파노ID를 가져올 로드뷰 helper객체
     
-    var highLat = 37.715133;
-    var lowLat = 37.413294;
-    var highLng = 127.269311;
-    var lowLng = 126.734086;
-    //서울 위도 경도
-
-    var yhighLat = 37.5400236529;
-    var ylowLat = 37.4872013023;
-    var yhighLng = 126.9369385562;
-    var ylowLng = 126.8812249036;
-    //영등포구 위도 경도
-
-    function getRandomL(low, high) {
-      return (Math.random()*(high-low)+low).toFixed(10);
-    }
-
-    var position = new kakao.maps.LatLng(getRandomL(ylowLat, yhighLat), getRandomL(ylowLng, yhighLng));
-    //영등포구 위도경도 랜덤설정
+    var spot = [[37.5779509551, 126.976954730], [37.5627166542, 126.984749934], [37.582687448, 126.9835809], [37.493103067, 126.920631398], [37.507644327, 127.100994589], [37.518211264, 127.126632461], [37.57905542, 126.990946341], [37.520908070, 127.022936182], [37.513986372, 126.894196149], [37.516156221, 126.889776325], [37.5094594823, 126.889108714], [37.518149519, 126.904030355], [37.55183874, 126.98841299], [37.5833409754, 127.000324436], [37.601364262, 126.980743272]];
+    //경복궁, 명동, 보라매공원, 북촌한옥마을, 석촌호수공원, 올림픽공원, 창덕궁, 가로수길, 여의도한강공원, 문래창작촌, 신도림디큐브시티, 타임스퀘어, 남산, 대학로, 북악스카이웨이,
+    var i = Math.floor(Math.random()*spot.length);
+    var position = new kakao.maps.LatLng(spot[i][0], spot[i][1]);
+    //주요 명소 랜덤설정
     
     // 특정 위치의 좌표와 가까운 로드뷰의 panoId를 추출하여 로드뷰를 띄운다.
-    roadviewClient.getNearestPanoId(position, 200, function(panoId) {
+    
+    roadviewClient.getNearestPanoId(position, 150, function(panoId) {
         roadview.setPanoId(panoId, position); //panoId와 중심좌표를 통해 로드뷰 실행
+        
     });
 
 	</script>
